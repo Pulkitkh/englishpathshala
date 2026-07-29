@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" role="img" aria-label="English Pathshala">
+  <!-- Placeholder mark drawn to match the real logo (graduation cap + laptop).
+       Replace /public/logo.svg (or drop logo.png beside it) with the actual file. -->
+  <circle cx="60" cy="60" r="60" fill="#ffffff" />
+  <g stroke="#0b4874" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round">
+    <!-- laptop screen -->
+    <path d="M36 52h48v30H36z" fill="#ffffff" />
+    <!-- laptop base -->
+    <path d="M28 82h64l6 12H22z" fill="#75d3ff" />
+    <!-- keys -->
+    <g stroke="none" fill="#0b4874" opacity="0.85">
+      <rect x="34" y="85" width="7" height="4" rx="1.2" />
+      <rect x="45" y="85" width="7" height="4" rx="1.2" />
+      <rect x="56" y="85" width="7" height="4" rx="1.2" />
+      <rect x="67" y="85" width="7" height="4" rx="1.2" />
+      <rect x="78" y="85" width="7" height="4" rx="1.2" />
+      <rect x="39" y="91" width="7" height="4" rx="1.2" />
+      <rect x="50" y="91" width="20" height="4" rx="1.2" />
+      <rect x="74" y="91" width="7" height="4" rx="1.2" />
+    </g>
+    <!-- graduation cap -->
+    <path d="M60 22 24 40l36 18 36-18z" fill="#75d3ff" />
+    <path d="M40 49v14c0 5 9 9 20 9s20-4 20-9V49" fill="#2cbcff" />
+    <!-- tassel -->
+    <path d="M24 40v18" />
+    <path d="M24 58l-4 12h8z" fill="#ffffff" />
+  </g>
+</svg>
