@@ -23,7 +23,7 @@ export const site = {
   founderPhoto: '',
 
   /** Used for SEO, sitemap and Open Graph. Set NEXT_PUBLIC_SITE_URL in production. */
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://englishpathshala.in',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://englishpathshala.online',
 
   description:
     'Live online spoken English classes with Bhavya Jain. Small batches, daily speaking practice, and personal feedback — for students, job seekers and working professionals across India.',
@@ -35,7 +35,7 @@ export const site = {
   /** tel: link target. */
   phoneHref: '+919261804979',
 
-  email: 'hello@englishpathshala.in',
+  email: 'hello@englishpathshala.online',
 
   socials: {
     instagram: 'https://www.instagram.com/_englishpathshala_',

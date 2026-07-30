@@ -135,34 +135,110 @@ The dashboard is excluded from Google in `robots.ts`.
 
 ---
 
-## Deploying
+## Deploying for free (recommended)
 
-Set `NEXT_PUBLIC_SITE_URL` to your real domain on any host, or link previews and the
-sitemap will point at the wrong place.
+Everything below costs **₹0 per month**. The only recurring cost is the domain renewal.
 
-### Vercel (easiest)
-1. Push this repo to GitHub.
-2. Import it at [vercel.com/new](https://vercel.com/new) — it detects Next.js on its own.
-3. Add environment variables: `NEXT_PUBLIC_SITE_URL`, `ADMIN_PASSWORD`, `DATABASE_URL`.
-4. Deploy, then add your domain under **Settings → Domains**.
+| Piece | Service | Cost | Why |
+| --- | --- | --- | --- |
+| The website | **Netlify** free tier | ₹0 | Runs Next.js properly, free HTTPS, commercial use allowed |
+| The database | **Neon** free tier | ₹0 | Netlify's disk is read-only, so enquiries need a database |
+| The domain | Hostinger | already bought | Just point it at Netlify |
+| Email alerts | **Resend** free tier | ₹0 | Optional — 3,000 emails/month |
 
-### Netlify
-Same flow — `netlify.toml` in this repo already sets the build command and the Next.js
-plugin. Add the same environment variables under **Site settings → Environment variables**.
+> **Why not Vercel?** It is marginally better for Next.js, but its free Hobby plan is
+> licensed for **non-commercial** use only. This site sells courses, so Netlify's free
+> tier — which does allow commercial use — is the correct free option.
 
-### A VPS (Hostinger, DigitalOcean, Contabo…)
+### Step 1 — Put the code on GitHub
+The repo is already pushed. Just make sure the branch you want to deploy is up to date.
+
+### Step 2 — Create the free database (5 minutes)
+1. Sign up at [neon.tech](https://neon.tech) with GitHub. No card needed.
+2. Create a project — any name, and pick the **Singapore** region (closest to India).
+3. Copy the **connection string**. It looks like:
+   ```
+   postgresql://user:password@ep-something-123.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+   ```
+4. Keep that tab open — you paste this into Netlify next.
+
+The `leads` table creates itself the first time someone submits the form. Nothing to set up.
+
+> Neon's free database goes to sleep after a few minutes of no traffic, so the very first
+> enquiry after a quiet spell takes about an extra second to save. Nobody notices, and the
+> visitor is handed to WhatsApp regardless.
+
+### Step 3 — Deploy on Netlify (5 minutes)
+1. Sign up at [netlify.com](https://netlify.com) with GitHub.
+2. **Add new site → Import an existing project → GitHub**, and pick this repo.
+3. Leave the build settings alone — `netlify.toml` in this repo already sets them.
+4. Before clicking deploy, open **Environment variables** and add:
+
+   | Key | Value |
+   | --- | --- |
+   | `NEXT_PUBLIC_SITE_URL` | `https://englishpathshala.online` |
+   | `ADMIN_PASSWORD` | a long password you invent — this guards student phone numbers |
+   | `DATABASE_URL` | the Neon connection string from step 2 |
+
+5. Deploy. You get a temporary address like `random-name-123.netlify.app` — open it and
+   check the site works before touching the domain.
+
+### Step 4 — Point the Hostinger domain at Netlify
+In Netlify: **Domain management → Add a domain →** type `englishpathshala.online`.
+
+Netlify then offers two ways. **Use the nameserver method** — it is fewer steps and it
+handles the certificate and the `www` redirect for you:
+
+1. Netlify shows you four nameservers, like `dns1.p03.nsone.net`, `dns2.p03.nsone.net`, …
+   Copy all four exactly as shown (yours will differ from this example).
+2. In Hostinger: **Domains → englishpathshala.online → DNS / Nameservers → Change
+   nameservers → Use custom nameservers**, and paste the four in.
+3. Save. DNS changes take anywhere from 15 minutes to a few hours to spread worldwide.
+
+Once it resolves, Netlify issues a free Let's Encrypt HTTPS certificate automatically.
+Do not pay Hostinger for an SSL certificate — you do not need one.
+
+> Prefer to keep DNS at Hostinger? Then use the records Netlify's **"Add DNS records"**
+> panel shows you — an `A` record for the root domain pointing at Netlify's load balancer,
+> and a `CNAME` for `www` pointing at your `.netlify.app` address. Read the values off that
+> panel rather than copying them from any guide, including this one — they do change.
+
+### Step 5 — Optional email alerts
+Without this, new enquiries still reach you on WhatsApp and appear in `/admin`. If you also
+want an email for each one: sign up at [resend.com](https://resend.com), create an API key,
+and add `RESEND_API_KEY` and `NOTIFY_EMAIL_TO` in Netlify's environment variables.
+
+### After deploying, check these
+- `https://englishpathshala.online/api/health` → should say `"storage": "postgres"`.
+  If it says `json-file`, your `DATABASE_URL` did not get picked up.
+- Submit a test enquiry, then confirm it appears at `/admin`
+- Paste your homepage link into a WhatsApp chat — the preview card should appear
+- Open the site on your phone and tap every WhatsApp button
+- Delete your test enquiry from `/admin` when you are done
+
+### Changing the site later
+Edit `lib/site.ts` or `lib/content.ts`, commit, and push to GitHub. Netlify rebuilds and
+publishes within a couple of minutes on its own. There is nothing to upload by hand.
+
+---
+
+## Other hosting options
+
+### A VPS (Hostinger VPS, DigitalOcean, Contabo…) — roughly ₹400–600/month
+Worth it only if you want everything in one account, or you outgrow the free tiers.
 ```bash
 npm ci && npm run build
 npm run start          # listens on port 3000
 ```
 Put Nginx or Caddy in front for HTTPS, and keep it running with `pm2` or a systemd unit.
-Here you can skip `DATABASE_URL` — `data/leads.json` works fine. Back that file up.
+Here you can skip `DATABASE_URL` entirely — `data/leads.json` works, because a VPS has a
+real writable disk. Back that file up.
 
-### After deploying, check these
-- `https://yourdomain.com/api/health` → shows storage and notification status
-- Submit a test enquiry, then confirm it appears in `/admin`
-- Paste your homepage link into a WhatsApp chat — the preview card should appear
-- Open the site on your phone and tap every WhatsApp button
+### What will NOT work
+Hostinger's shared **Web Hosting** / cPanel plans are built for PHP and WordPress. This is
+a Node.js application, so uploading the files there will not run it. The "free coming soon
+page or link in bio site" bundled with the domain is also unrelated — that is a one-page
+placeholder, not this website.
 
 ---
 
