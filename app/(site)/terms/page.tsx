@@ -17,47 +17,58 @@ export default function TermsPage() {
           <section>
             <h2 className="font-display text-2xl font-semibold text-ink">Enrolment</h2>
             <p className="mt-3">
-              Every student starts with a free level check and one free demo class. A seat is
-              confirmed only after the fee for the first month is paid, and batches are capped at 12
-              students. If a batch is full, you are offered the next one rather than being added
-              beyond the cap.
+              Courses are offered in two formats: <strong>live batches</strong> on Zoom, and
+              <strong> recorded courses</strong> you buy and study at your own pace. For a live batch,
+              every student starts with a free level check and one free demo class, and the seat is
+              confirmed only after the first month&apos;s fee is paid. Live batches are capped at 12
+              students; if one is full you are offered another rather than being added beyond the cap.
+              There is no fixed intake date — a batch opens once a group with matching timings is
+              ready. Recorded courses can be started as soon as the payment is made.
             </p>
           </section>
 
           <section>
             <h2 className="font-display text-2xl font-semibold text-ink">Fees</h2>
             <p className="mt-3">
-              Fees are charged monthly (or as a one-time course fee where stated on the course card)
-              and are payable by UPI or bank transfer. Prices shown on this website may change for
-              future batches, but never mid-course for an enrolled student.
+              Fees depend on the course and the format, and are shared directly on WhatsApp rather
+              than published on this website. Live batches are charged monthly; recorded courses are a
+              one-time purchase. Both are payable by UPI or bank transfer. Fees may change for future
+              batches, but never mid-course for an enrolled student.
             </p>
           </section>
 
           <section>
             <h2 className="font-display text-2xl font-semibold text-ink">Refunds</h2>
             <p className="mt-3">
-              If you attend the first week of a paid month and decide the class is not right for you,
-              tell us before the 7th day and that month&apos;s fee is refunded in full. After the
-              first week, fees for the running month are non-refundable, but you may pause and
-              rejoin a later batch within six months at no extra cost.
+              <strong>Live batches:</strong> if you attend the first week of a paid month and decide
+              the class is not right for you, tell us before the 7th day and that month&apos;s fee is
+              refunded in full. After the first week, fees for the running month are non-refundable,
+              but you may pause and rejoin a later batch within six months at no extra cost.
+              <br />
+              <br />
+              <strong>Recorded courses:</strong> because the full course content is delivered
+              immediately on purchase, recorded courses are non-refundable once access has been given.
+              Watch the free preview lessons and ask any questions before buying.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-2xl font-semibold text-ink">Classes and attendance</h2>
+            <h2 className="font-display text-2xl font-semibold text-ink">Live classes and attendance</h2>
             <p className="mt-3">
-              Classes run live on Zoom on weekdays as per your batch timing. Sessions are recorded
-              and shared with the batch. Occasionally a class may be rescheduled — you will be told
-              in the batch group in advance, and any missed session is made up.
+              Live classes run on Zoom as per your batch timing. Sessions are <strong>not</strong>
+              recorded — this is deliberate, so students speak freely without a permanent archive of
+              their mistakes. If you miss a class, your teacher shares the notes and a catch-up task.
+              Occasionally a class may be rescheduled; you will be told in the batch group in advance
+              and any missed session is made up.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-2xl font-semibold text-ink">Recordings and materials</h2>
+            <h2 className="font-display text-2xl font-semibold text-ink">Course materials</h2>
             <p className="mt-3">
-              Class recordings, notes and worksheets are for your personal learning only. Please do
-              not re-share, resell or publish them. Class recordings may include other students&apos;
-              voices, so they are never made public.
+              Recorded course videos, notes and worksheets are licensed to you for your personal
+              learning only. Please do not download, re-share, resell or publish them, and do not
+              share your access with anyone else — doing so ends access without a refund.
             </p>
           </section>
 
@@ -65,8 +76,8 @@ export default function TermsPage() {
             <h2 className="font-display text-2xl font-semibold text-ink">Results</h2>
             <p className="mt-3">
               Progress depends on attendance and daily practice. We do not guarantee a specific
-              level, exam score, job or placement outcome. What we do guarantee is that you will get
-              speaking time and personal feedback in every class you attend.
+              level, exam score, job or placement outcome. What we do guarantee is that in a live
+              batch you will get speaking time and personal feedback in every class you attend.
             </p>
           </section>
 
@@ -74,7 +85,7 @@ export default function TermsPage() {
             <h2 className="font-display text-2xl font-semibold text-ink">Code of conduct</h2>
             <p className="mt-3">
               This is a beginner-friendly classroom. Mocking, harassing or recording other students
-              without consent results in removal from the batch without a refund.
+              without their consent results in removal from the batch without a refund.
             </p>
           </section>
 

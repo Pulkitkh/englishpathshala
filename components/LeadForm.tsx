@@ -5,6 +5,12 @@ import { programs } from '@/lib/content';
 import { site, whatsappLink } from '@/lib/site';
 import { CheckIcon, WhatsAppIcon } from './Icons';
 
+const formatChoices = [
+  { value: 'Live batch', label: 'Live batch', hint: 'Speak daily with a teacher and a small group' },
+  { value: 'Recorded course', label: 'Recorded course', hint: 'Buy once, learn at your own pace' },
+  { value: 'Not sure yet', label: 'Not sure yet', hint: 'Help me pick the right one' },
+];
+
 const levels = [
   'Complete beginner — I can barely make a sentence',
   'I understand English but freeze while speaking',
@@ -49,6 +55,7 @@ export function LeadForm() {
       email: String(formData.get('email') ?? ''),
       program: String(formData.get('program') ?? ''),
       level: String(formData.get('level') ?? ''),
+      format: String(formData.get('format') ?? ''),
       preferredTime: String(formData.get('preferredTime') ?? ''),
       goal: String(formData.get('goal') ?? ''),
       website: String(formData.get('website') ?? ''),
@@ -87,8 +94,8 @@ export function LeadForm() {
         </span>
         <h3 className="mt-5 font-display text-2xl font-semibold text-ink">Got it! One last step 👇</h3>
         <p className="mx-auto mt-3 max-w-md text-pretty text-[15px] leading-relaxed text-ink-soft">
-          Your details are with {site.founder}. Tap below to open WhatsApp — your message is already
-          typed out. That is where your demo class gets scheduled.
+          Your details are with the {site.name} team. Tap below to open WhatsApp — your message is
+          already typed out. That is where your demo class or course access gets sorted.
         </p>
         <a
           href={success.whatsappUrl}
@@ -116,9 +123,10 @@ export function LeadForm() {
       noValidate
       className="rounded-3xl border border-brand-100 bg-white p-6 shadow-lift sm:p-8"
     >
-      <h3 className="font-display text-2xl font-semibold text-ink">Book your free demo class</h3>
+      <h3 className="font-display text-2xl font-semibold text-ink">Tell us what you need</h3>
       <p className="mt-2 text-[15px] text-ink-soft">
-        Takes 30 seconds. No payment, no obligation — you sit in one full live class first.
+        Takes 30 seconds. No payment, no obligation — and if you pick a live batch, you sit in one
+        full class before deciding.
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -180,6 +188,38 @@ export function LeadForm() {
           </select>
         </Field>
 
+        <fieldset className="sm:col-span-2">
+          <legend className="field-label">Live batch or recorded course?</legend>
+          <div className="grid gap-2.5 sm:grid-cols-3">
+            {formatChoices.map((choice, index) => (
+              <label
+                key={choice.value}
+                className="flex cursor-pointer items-start gap-2.5 rounded-xl border border-brand-100 bg-white p-3.5 text-sm shadow-sm transition
+                           hover:border-brand-300 has-[:checked]:border-brand-400 has-[:checked]:bg-brand-50"
+              >
+                <input
+                  type="radio"
+                  name="format"
+                  value={choice.value}
+                  defaultChecked={index === 0}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-brand-600"
+                />
+                <span>
+                  <span className="block font-semibold text-ink">{choice.label}</span>
+                  <span className="mt-0.5 block text-[13px] leading-snug text-ink-muted">
+                    {choice.hint}
+                  </span>
+                </span>
+              </label>
+            ))}
+          </div>
+          {errors.format && (
+            <p className="mt-1.5 text-sm text-red-600" role="alert">
+              {errors.format}
+            </p>
+          )}
+        </fieldset>
+
         <Field label="Preferred timing" name="preferredTime" error={errors.preferredTime}>
           <select id="preferredTime" name="preferredTime" defaultValue="" className="field">
             <option value="">Any time works</option>
@@ -188,7 +228,6 @@ export function LeadForm() {
                 {time}
               </option>
             ))}
-            <option value="Weekend only">Weekend only</option>
           </select>
         </Field>
 
@@ -232,7 +271,7 @@ export function LeadForm() {
       )}
 
       <button type="submit" disabled={submitting} className="btn-primary mt-6 w-full">
-        {submitting ? 'Sending…' : 'Book my free demo class'}
+        {submitting ? 'Sending…' : 'Send my enquiry'}
       </button>
 
       <p className="mt-4 text-center text-xs leading-relaxed text-ink-muted">

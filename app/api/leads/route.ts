@@ -54,6 +54,7 @@ export async function POST(request: Request) {
       email: data.email || null,
       program: data.program,
       level: data.level,
+      format: data.format || 'Not sure yet',
       goal: data.goal || null,
       preferredTime: data.preferredTime || null,
       source: data.source || null,
@@ -61,13 +62,21 @@ export async function POST(request: Request) {
 
     await notifyNewLead(lead);
 
+    // A recorded-course enquiry has no demo class to book, so ask for the
+    // right thing instead of a generic "book a demo".
+    const closing =
+      lead.format === 'Recorded course'
+        ? "I'd like the details and price for the recorded course."
+        : "I'd like to book a free demo class.";
+
     const message =
       `Hi ${site.founder}! I just filled the form on your website.\n\n` +
       `Name: ${lead.name}\n` +
       `Course: ${lead.program}\n` +
+      `Format: ${lead.format}\n` +
       `My level: ${lead.level}\n` +
       (lead.preferredTime ? `Preferred timing: ${lead.preferredTime}\n` : '') +
-      `\nI'd like to book a free demo class.`;
+      `\n${closing}`;
 
     return NextResponse.json({ ok: true, id: lead.id, whatsappUrl: whatsappLink(message) });
   } catch (error) {

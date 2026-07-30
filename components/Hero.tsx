@@ -37,10 +37,11 @@ export function Hero() {
 
           <Reveal delay={160}>
             <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-ink-soft">
-              Live online spoken English classes with <strong className="font-semibold text-ink">{site.founder}</strong> —
-              only 12 students in a batch, so you actually speak every single day.
-              Taught in Hindi <em>and</em> English, for people who understand English but freeze
-              when it&apos;s their turn to talk.
+              Live online classes from <strong className="font-semibold text-ink">{site.founder}</strong> and
+              her team — only 12 students in a batch, so you actually speak every single day. Or take
+              the same course as a recorded one and learn at your own pace. Taught in Hindi{' '}
+              <em>and</em> English, for people who understand English but freeze when it&apos;s their
+              turn to talk.
             </p>
           </Reveal>
 

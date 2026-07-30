@@ -52,16 +52,31 @@ export const site = {
     { value: '3', label: 'Months to fluency' },
   ],
 
-  /** Live class details shown on the pricing / CTA cards. */
+  /** Live batch details shown on the course and CTA cards. */
   batch: {
-    mode: 'Live online on Zoom (recordings included)',
-    duration: '60 minutes a day, Mon–Fri',
-    nextStart: 'New batch starts on the 1st & 15th of every month',
-    timings: ['7:00 AM – 8:00 AM', '6:30 PM – 7:30 PM', '9:00 PM – 10:00 PM'],
+    mode: 'Live online on Zoom',
+    duration: 'Around an hour a day, on the days your batch picks',
+    /**
+     * Broad windows rather than fixed slots — a new batch opens as soon as a
+     * small group with matching timings is ready, so the timing is agreed with
+     * the students in it.
+     */
+    timings: [
+      'Early morning (6 – 9 AM)',
+      'Late morning (9 AM – 12 PM)',
+      'Afternoon (12 – 5 PM)',
+      'Evening (5 – 9 PM)',
+      'Night (9 – 11 PM)',
+      'Weekends only',
+    ],
   },
 
-  /** Set to false to hide the price on the site and only share it on WhatsApp. */
-  showPricing: true,
+  /**
+   * Prices are shared personally on WhatsApp rather than published, since the
+   * fee depends on the course, the format and the batch. Flip this to true and
+   * fill in `price` on any course in lib/content.ts to show them on the cards.
+   */
+  showPricing: false,
 } as const;
 
 /** Default message pre-filled when someone taps a WhatsApp button. */

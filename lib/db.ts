@@ -25,6 +25,7 @@ export type Lead = {
   email: string | null;
   program: string;
   level: string;
+  format: string;
   goal: string | null;
   preferredTime: string | null;
   source: string | null;
@@ -63,6 +64,7 @@ async function getPool(): Promise<Pool> {
           email          TEXT,
           program        TEXT NOT NULL,
           level          TEXT NOT NULL,
+          format         TEXT NOT NULL DEFAULT 'Not sure yet',
           goal           TEXT,
           preferred_time TEXT,
           source         TEXT,
@@ -71,6 +73,8 @@ async function getPool(): Promise<Pool> {
           created_at     TIMESTAMPTZ NOT NULL DEFAULT NOW()
         );
       `);
+      // Keeps tables created by an earlier version of this app working.
+      await pool.query(`ALTER TABLE leads ADD COLUMN IF NOT EXISTS format TEXT NOT NULL DEFAULT 'Not sure yet';`);
       await pool.query(`CREATE INDEX IF NOT EXISTS leads_created_at_idx ON leads (created_at DESC);`);
       return pool;
     })();
@@ -87,6 +91,7 @@ function rowToLead(row: any): Lead {
     email: row.email,
     program: row.program,
     level: row.level,
+    format: row.format,
     goal: row.goal,
     preferredTime: row.preferred_time,
     source: row.source,
@@ -136,8 +141,8 @@ export async function createLead(input: NewLead): Promise<Lead> {
   if (usingPostgres) {
     const pool = await getPool();
     await pool.query(
-      `INSERT INTO leads (id, name, phone, email, program, level, goal, preferred_time, source, status, created_at)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
+      `INSERT INTO leads (id, name, phone, email, program, level, format, goal, preferred_time, source, status, created_at)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,
       [
         lead.id,
         lead.name,
@@ -145,6 +150,7 @@ export async function createLead(input: NewLead): Promise<Lead> {
         lead.email,
         lead.program,
         lead.level,
+        lead.format,
         lead.goal,
         lead.preferredTime,
         lead.source,

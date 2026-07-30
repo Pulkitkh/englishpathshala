@@ -38,7 +38,7 @@ export function AdminDashboard({
     return leads.filter((lead) => {
       if (filter !== 'all' && lead.status !== filter) return false;
       if (!needle) return true;
-      return [lead.name, lead.phone, lead.email, lead.program, lead.goal]
+      return [lead.name, lead.phone, lead.email, lead.program, lead.format, lead.goal]
         .filter(Boolean)
         .some((value) => String(value).toLowerCase().includes(needle));
     });
@@ -169,8 +169,9 @@ export function AdminDashboard({
                 </div>
               </div>
 
-              <dl className="mt-4 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
+              <dl className="mt-4 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-2 lg:grid-cols-5">
                 <Detail label="Course" value={lead.program} />
+                <Detail label="Format" value={lead.format} />
                 <Detail label="Level" value={lead.level} />
                 <Detail label="Preferred time" value={lead.preferredTime ?? '—'} />
                 <Detail label="Came from" value={lead.source ?? '—'} />

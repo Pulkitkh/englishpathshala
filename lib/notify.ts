@@ -25,6 +25,7 @@ async function sendEmail(lead: Lead): Promise<void> {
         <tr><td><b>Phone</b></td><td><a href="${waLink}">${escapeHtml(lead.phone)}</a></td></tr>
         <tr><td><b>Email</b></td><td>${escapeHtml(lead.email || '—')}</td></tr>
         <tr><td><b>Course</b></td><td>${escapeHtml(lead.program)}</td></tr>
+        <tr><td><b>Format</b></td><td>${escapeHtml(lead.format)}</td></tr>
         <tr><td><b>Level</b></td><td>${escapeHtml(lead.level)}</td></tr>
         <tr><td><b>Preferred time</b></td><td>${escapeHtml(lead.preferredTime || '—')}</td></tr>
         <tr><td><b>Came from</b></td><td>${escapeHtml(lead.source || '—')}</td></tr>
@@ -46,7 +47,7 @@ async function sendEmail(lead: Lead): Promise<void> {
     body: JSON.stringify({
       from,
       to: to.split(',').map((address) => address.trim()),
-      subject: `New ${site.name} enquiry — ${lead.name} (${lead.program})`,
+      subject: `New ${site.name} enquiry — ${lead.name} (${lead.program}, ${lead.format})`,
       html,
     }),
   });

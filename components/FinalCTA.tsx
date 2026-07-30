@@ -21,8 +21,8 @@ export function FinalCTA() {
 
         <Reveal delay={100}>
           <p className="mx-auto mt-5 max-w-xl text-pretty text-lg leading-relaxed text-brand-100">
-            {site.batch.nextStart}. Seats are capped at 12, so batches do fill up — but there is
-            always a next one, and no one will ever pressure you into it.
+            Tell us the hours that suit you and we will open or find a batch around them. Prefer to
+            study alone? The recorded courses start the moment you buy them.
           </p>
         </Reveal>
 

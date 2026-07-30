@@ -2,14 +2,15 @@ import { site } from '@/lib/site';
 import { Reveal } from './Reveal';
 
 const marqueeItems = [
-  'Live on Zoom',
-  'Max 12 per batch',
-  'Class recordings included',
+  'Live batches on Zoom',
+  'Recorded courses too',
+  'Max 12 per live batch',
   'Taught in Hindi + English',
   'Free demo class',
   'Daily speaking practice',
+  'Male & female teachers',
+  'Flexible timings',
   'Personal feedback every week',
-  'Morning & night batches',
 ];
 
 export function TrustBar() {

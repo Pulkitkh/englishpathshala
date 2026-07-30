@@ -6,8 +6,9 @@ import { CheckIcon, ClockIcon, PhoneIcon, UsersIcon, VideoIcon, WhatsAppIcon } f
 const reassurances = [
   'A free 20-minute level check before anything else',
   'One full live class with a running batch — free',
+  'Live batch or recorded course, whichever suits you',
   'You only pay after you have decided it works for you',
-  'Full refund if you tell me within the first week',
+  'Full refund if you tell us within the first week',
 ];
 
 export function EnquirySection() {
@@ -43,12 +44,20 @@ export function EnquirySection() {
 
           <Reveal delay={160}>
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <InfoTile icon={<VideoIcon className="h-5 w-5" />} label="Mode" value={site.batch.mode} />
-              <InfoTile icon={<ClockIcon className="h-5 w-5" />} label="Schedule" value={site.batch.duration} />
+              <InfoTile
+                icon={<VideoIcon className="h-5 w-5" />}
+                label="Formats"
+                value="Live batch or recorded course"
+              />
+              <InfoTile
+                icon={<ClockIcon className="h-5 w-5" />}
+                label="Timings"
+                value="Flexible — batches open around students"
+              />
               <InfoTile icon={<UsersIcon className="h-5 w-5" />} label="Batch size" value="Maximum 12 students" />
               <InfoTile
                 icon={<PhoneIcon className="h-5 w-5" />}
-                label="Talk to Bhavya"
+                label="Talk to us"
                 value={site.phoneDisplay}
                 href={`tel:${site.phoneHref}`}
               />

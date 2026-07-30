@@ -13,7 +13,7 @@ export function Differentiators() {
               A classroom where <span className="text-brand-600">mistakes are the syllabus</span>
             </>
           }
-          subtitle="No 200-student webinars. No pre-recorded course you will never finish. Just a small live batch where somebody notices when you don't speak."
+          subtitle="No 200-student webinars, no hour of sitting silent while somebody lectures. Whether you take a live batch or the recorded course, the whole thing is built around you actually opening your mouth."
         />
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

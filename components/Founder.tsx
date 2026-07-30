@@ -6,7 +6,7 @@ import { InstagramIcon, WhatsAppIcon } from './Icons';
 const credentials = [
   'Teaching spoken English full-time since 2019',
   'Trained students, job seekers and working professionals across 20+ cities',
-  'Every class in every batch taken personally — no assistant teachers',
+  'A small faculty of male and female teachers, so you can learn from whoever you are most comfortable with',
   'Classes run in Hindi + English, because you learn fastest in the language you think in',
 ];
 
@@ -41,7 +41,7 @@ export function Founder() {
             )}
 
             <div className="absolute -bottom-5 -right-3 rounded-2xl border border-brand-100 bg-white px-4 py-3 shadow-lift">
-              <p className="text-xs font-medium text-ink-muted">Taught by</p>
+              <p className="text-xs font-medium text-ink-muted">Founder</p>
               <p className="font-display text-lg font-semibold text-ink">{site.founder}</p>
             </div>
           </div>
@@ -49,11 +49,11 @@ export function Founder() {
 
         <div>
           <Reveal>
-            <span className="eyebrow">Meet your teacher</span>
+            <span className="eyebrow">Meet the founder</span>
             <h2 className="mt-5 font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl lg:text-[2.75rem]">
               Hi, I&apos;m {site.founder}.
               <br />
-              <span className="text-brand-600">I teach every class myself.</span>
+              <span className="text-brand-600">This is my classroom.</span>
             </h2>
           </Reveal>
 
@@ -66,8 +66,14 @@ export function Founder() {
               </p>
               <p>
                 So that is what I built. Small live batches where you talk every day, get corrected
-                gently, and stop apologising for your mistakes. No lecture-and-leave webinars, no
-                recorded course gathering dust in your downloads folder.
+                gently, and stop apologising for your mistakes — plus recorded courses for the people
+                whose week simply will not hold a fixed class.
+              </p>
+              <p>
+                I don&apos;t take every class alone any more. English Pathshala now has a small
+                faculty of male and female teachers that I train and work alongside, and students are
+                matched to the teacher who fits what they need — their level, their timing, and who
+                they feel comfortable making mistakes in front of.
               </p>
               <p className="font-medium text-ink">
                 If you can read this page, you already know more English than you think. You just
@@ -100,7 +106,7 @@ export function Founder() {
                 data-cta="founder-whatsapp"
               >
                 <WhatsAppIcon className="h-5 w-5" />
-                Talk to me directly
+                Talk to us directly
               </a>
               <a
                 href={site.socials.instagram}

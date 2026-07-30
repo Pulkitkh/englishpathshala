@@ -24,6 +24,7 @@ export const leadSchema = z.object({
     .or(z.literal('')),
   program: z.string().trim().min(1, 'Please pick a course').max(80),
   level: z.string().trim().min(1, 'Please pick your current level').max(80),
+  format: z.string().trim().max(60).optional().or(z.literal('')),
   goal: z.string().trim().max(600, 'Please keep this under 600 characters').optional().or(z.literal('')),
   preferredTime: z.string().trim().max(80).optional().or(z.literal('')),
   source: z.string().trim().max(120).optional().or(z.literal('')),

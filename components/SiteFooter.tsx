@@ -23,8 +23,8 @@ export function SiteFooter() {
           <div>
             <Logo />
             <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-ink-soft">
-              Live online spoken English classes taught personally by {site.founder}. Small batches,
-              daily speaking practice, zero judgement.
+              Live online spoken English classes and recorded courses from {site.founder} and her
+              team. Small batches, daily speaking practice, zero judgement.
             </p>
             <div className="mt-5 flex gap-2.5">
               <a
@@ -111,7 +111,6 @@ export function SiteFooter() {
                   {site.socials.instagramHandle}
                 </a>
               </li>
-              <li className="pt-1 text-sm text-ink-muted">{site.batch.nextStart}</li>
             </ul>
           </div>
         </div>

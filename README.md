@@ -55,13 +55,19 @@ That is all you need. Enquiries are saved to `data/leads.json` until you add a d
 Almost everything you will want to change lives in two files.
 
 ### `lib/site.ts` — the settings file
-Phone number, WhatsApp number, Instagram link, email, stats shown under the hero, batch
-timings, and whether prices are shown at all (`showPricing: false` hides every price so
-you can quote on WhatsApp instead).
+Phone number, WhatsApp number, Instagram link, email, stats shown under the hero, and the
+preferred-timing windows offered in the enquiry form.
+
+Prices are **hidden by default** (`showPricing: false`) so you can quote each student on
+WhatsApp. To publish them instead, set `showPricing: true` and add a `price` to any course
+in `lib/content.ts`.
 
 ### `lib/content.ts` — the words
-Courses and prices, testimonials, before/after stories, the "why us" points, the four
-"how it works" steps, and the FAQ.
+Courses, testimonials, before/after stories, the "why us" points, the four "how it works"
+steps, and the FAQ.
+
+Each course carries a `formats` list — `['live']`, `['recorded']` or both. That drives the
+badges on the course cards, so a course you only teach live simply lists `['live']`.
 
 > ### ⚠️ Before you go live: replace the sample testimonials
 > The testimonials, before/after stories and the "500+ students" figure in this repo are
@@ -85,6 +91,7 @@ Courses and prices, testimonials, before/after stories, the "why us" points, the
 When someone submits the form, three things happen:
 
 1. **It is saved** — to Postgres if `DATABASE_URL` is set, otherwise to `data/leads.json`.
+   The record includes whether they want a live batch or the recorded course.
 2. **You are notified** — by email and/or webhook, if you configured either (optional).
 3. **The visitor is handed to WhatsApp** with a message already typed out for them.
 
@@ -116,7 +123,8 @@ LEAD_WEBHOOK_URL=https://...          # POSTs the lead as JSON to Zapier / Sheet
 
 Go to `/admin` and enter your `ADMIN_PASSWORD`. You can:
 
-- see every enquiry with the course, level, preferred timing and where they came from
+- see every enquiry with the course, chosen format (live or recorded), level, preferred
+  timing and where they came from
 - open WhatsApp or call them in one tap
 - mark each one **New → Contacted → Enrolled / Dropped**
 - search by name, number or course
