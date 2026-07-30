@@ -77,12 +77,29 @@ badges on the course cards, so a course you only teach live simply lists `['live
 > guidelines on fake reviews (BIS IS 19000:2022).
 
 ### Images to add
-- **Logo** — `public/logo.svg` is a hand-drawn stand-in for your real logo. Replace that
-  file (keep the name) with your actual logo file.
-- **Founder photo** — drop a photo into `public/` (e.g. `public/bhavya.jpg`) and set
-  `founderPhoto: '/bhavya.jpg'` in `lib/site.ts`. Until you do, a clean initials card
-  shows instead. A real photo converts noticeably better — add one.
-- **Student photos** — optional `photo: '/testimonials/riya.jpg'` on any testimonial.
+
+**Bhavya's photo — just drop the file in, no code to edit.**
+Save the photo as **`public/bhavya.jpg`** (`.png` and `.webp` also work) and it appears
+automatically in two places: the large portrait in the "Meet the founder" section, and the
+host tile in the live-class card at the top of the page. Until the file exists, a clean
+initials card is shown instead, so the site never displays a broken image.
+
+- **Best photo to use:** a portrait (taller than wide), roughly 1000×1500 pixels, with the
+  face in the upper third and a plain background. Keep it under about 500 KB — Next.js
+  compresses and resizes it for each screen automatically.
+- **If the crop cuts off the head or shows too much floor**, adjust one line in
+  `lib/site.ts`:
+  ```ts
+  founderPhotoPosition: '50% 20%',   // second number = how far down the crop sits
+  ```
+  Lower it (`10%`) to pull the crop up, raise it (`35%`) to push it down.
+- **Different filename?** Set `founderPhoto: '/your-file.jpg'` in `lib/site.ts` and that
+  takes priority over the automatic lookup.
+
+**Logo** — `public/logo.svg` is a hand-drawn stand-in for the real logo. Replace that file,
+keeping the same name, with the actual logo.
+
+**Student photos** — optional `photo: '/testimonials/riya.jpg'` on any testimonial.
 
 ---
 

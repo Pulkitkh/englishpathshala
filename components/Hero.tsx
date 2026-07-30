@@ -1,4 +1,6 @@
+import Image from 'next/image';
 import { site, whatsappLink } from '@/lib/site';
+import { getFounderPhoto } from '@/lib/founder-photo';
 import { InstagramIcon, StarIcon, WhatsAppIcon } from './Icons';
 import { Reveal } from './Reveal';
 
@@ -38,7 +40,7 @@ export function Hero() {
           <Reveal delay={160}>
             <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-ink-soft">
               Live online classes from <strong className="font-semibold text-ink">{site.founder}</strong> and
-              her team — only 12 students in a batch, so you actually speak every single day. Or take
+              his team — only 12 students in a batch, so you actually speak every single day. Or take
               the same course as a recorded one and learn at your own pace. Taught in Hindi{' '}
               <em>and</em> English, for people who understand English but freeze when it&apos;s their
               turn to talk.
@@ -105,6 +107,8 @@ export function Hero() {
 }
 
 function ClassPreviewCard() {
+  const photo = getFounderPhoto();
+
   return (
     <div className="relative mx-auto w-full max-w-md lg:max-w-none">
       <div className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-brand-200/50 via-white to-accent-400/25 blur-2xl" />
@@ -138,10 +142,23 @@ function ClassPreviewCard() {
                 person.host ? 'ring-2 ring-accent-400 ring-offset-2 ring-offset-white' : ''
               }`}
             >
-              <span className="absolute inset-0 grid place-items-center text-lg font-bold text-white/95">
-                {person.initials}
-              </span>
-              <span className="absolute bottom-1 left-1.5 text-[10px] font-medium text-white/90">
+              {person.host && photo ? (
+                <Image
+                  src={photo}
+                  alt={`${site.founder} teaching a live class`}
+                  width={220}
+                  height={165}
+                  priority
+                  sizes="120px"
+                  style={{ objectPosition: site.founderPhotoPosition }}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              ) : (
+                <span className="absolute inset-0 grid place-items-center text-lg font-bold text-white/95">
+                  {person.initials}
+                </span>
+              )}
+              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent px-1.5 pb-1 pt-3 text-[10px] font-medium text-white">
                 {person.name}
                 {person.host ? ' (host)' : ''}
               </span>

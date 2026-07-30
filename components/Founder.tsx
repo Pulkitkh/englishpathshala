@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { site, whatsappLink } from '@/lib/site';
+import { getFounderPhoto } from '@/lib/founder-photo';
 import { Reveal } from './Reveal';
 import { InstagramIcon, WhatsAppIcon } from './Icons';
 
@@ -11,6 +12,8 @@ const credentials = [
 ];
 
 export function Founder() {
+  const photo = getFounderPhoto();
+
   return (
     <section id="about" className="section scroll-mt-24 overflow-hidden bg-sand">
       <div className="container-page grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
@@ -20,13 +23,22 @@ export function Founder() {
               aria-hidden
               className="absolute -inset-3 -z-10 rotate-3 rounded-[2rem] bg-gradient-to-br from-brand-200 to-accent-400/50"
             />
-            {site.founderPhoto ? (
+            {photo ? (
               <Image
-                src={site.founderPhoto}
+                src={photo}
                 alt={`${site.founder}, founder of ${site.name}`}
-                width={520}
-                height={620}
-                className="aspect-[4/5] w-full rounded-[1.75rem] object-cover shadow-lift"
+                width={640}
+                height={800}
+                priority={false}
+                sizes="(max-width: 1024px) 90vw, 384px"
+                /**
+                 * Portrait photos are taller than this 4:5 frame, so the crop
+                 * is pulled upwards — centring it would slice the top of the
+                 * head off. Tune `founderPhotoPosition` in lib/site.ts if your
+                 * photo sits differently.
+                 */
+                style={{ objectPosition: site.founderPhotoPosition }}
+                className="aspect-[4/5] w-full rounded-[1.75rem] bg-brand-50 object-cover shadow-lift"
               />
             ) : (
               <div className="grid aspect-[4/5] w-full place-items-center rounded-[1.75rem] bg-gradient-to-br from-brand-600 to-brand-900 text-center shadow-lift">

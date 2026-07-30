@@ -23,7 +23,7 @@ export function SiteFooter() {
           <div>
             <Logo />
             <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-ink-soft">
-              Live online spoken English classes and recorded courses from {site.founder} and her
+              Live online spoken English classes and recorded courses from {site.founder} and his
               team. Small batches, daily speaking practice, zero judgement.
             </p>
             <div className="mt-5 flex gap-2.5">

@@ -16,11 +16,23 @@ export const site = {
   founderRole: 'Founder & Lead Trainer, English Pathshala',
 
   /**
-   * Founder photo. Drop a square-ish photo into /public (e.g. /public/bhavya.jpg)
-   * and set this to '/bhavya.jpg'. Leave it empty and a clean initials card is
-   * shown instead — but a real photo converts far better, so add one before launch.
+   * Founder photo.
+   *
+   * Easiest way: just drop the photo into the /public folder and name it
+   * `bhavya.jpg` (.png and .webp also work). It is picked up automatically —
+   * you do not need to touch this line at all.
+   *
+   * Only set this if you want to use a different filename, e.g. '/team/bj.jpg'.
+   * With no photo present, a clean initials card is shown instead.
    */
   founderPhoto: '',
+
+  /**
+   * How the photo sits inside its frame, since portraits get cropped to fit.
+   * '50% 20%' keeps the face high in the frame, which suits a standing shot.
+   * Raise the second number to pull the crop down, lower it to pull it up.
+   */
+  founderPhotoPosition: '50% 20%',
 
   /** Used for SEO, sitemap and Open Graph. Set NEXT_PUBLIC_SITE_URL in production. */
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://englishpathshala.online',

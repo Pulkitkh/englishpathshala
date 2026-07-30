@@ -128,7 +128,7 @@ export const testimonials: Testimonial[] = [
     role: 'B.Com Student',
     city: 'Jaipur',
     quote:
-      'I used to shake before speaking in class. After two months with Bhavya ma\'am I gave a presentation in front of 60 people. The daily speaking practice is what changed everything for me.',
+      'I used to shake before speaking in class. After two months with Bhavya sir I gave a presentation in front of 60 people. The daily speaking practice is what changed everything for me.',
     rating: 5,
     initials: 'RS',
   },
@@ -155,7 +155,7 @@ export const testimonials: Testimonial[] = [
     role: 'MBA Aspirant',
     city: 'Lucknow',
     quote:
-      'Group discussions were my weakest point. Ma\'am made us do one every single Friday. That practice got me through my GD-PI round.',
+      'Group discussions were my weakest point. Sir made us do one every single Friday. That practice got me through my GD-PI round.',
     rating: 5,
     initials: 'SK',
   },
