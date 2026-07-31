@@ -96,6 +96,37 @@ initials card is shown instead, so the site never displays a broken image.
 - **Different filename?** Set `founderPhoto: '/your-file.jpg'` in `lib/site.ts` and that
   takes priority over the automatic lookup.
 
+> #### 🛠 Added the photo but it is not showing?
+> The homepage is **generated at build time**, so a file added afterwards is not picked up
+> until the site is built again. Two fixes, depending on how you are running it:
+>
+> | How you are running it | What to do |
+> | --- | --- |
+> | `npm run dev` | Stop it (Ctrl+C) and start it again |
+> | `npm run build` + `npm run start` | Re-run `npm run build`, then `npm run start` |
+>
+> Then hard-refresh the browser (**Ctrl+Shift+R**, or **Cmd+Shift+R** on Mac).
+>
+> **Replaced the photo but still seeing the old one?** Next.js caches resized images by
+> filename, so a new photo saved under the same name can keep serving the old version.
+> Delete the build cache and build again:
+> ```bash
+> rm -rf .next        # on Windows: rmdir /s /q .next
+> npm run build
+> ```
+>
+> The build log tells you which state you are in — if no photo was found you will see a
+> `[english-pathshala] No founder photo found` warning.
+>
+> **Also make sure the photo is committed to git.** If VS Code shows a **U** next to
+> `bhavya.jpg`, the file is untracked — it exists only on your computer and will be missing
+> when the site deploys:
+> ```bash
+> git add public/bhavya.jpg
+> git commit -m "Add founder photo"
+> git push
+> ```
+
 **Logo** — `public/logo.svg` is a hand-drawn stand-in for the real logo. Replace that file,
 keeping the same name, with the actual logo.
 

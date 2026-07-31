@@ -27,6 +27,8 @@ const CANDIDATES = [
   'founder.webp',
 ];
 
+let warned = false;
+
 export function getFounderPhoto(): string | null {
   // An explicit setting always wins.
   if (site.founderPhoto) return site.founderPhoto;
@@ -40,6 +42,20 @@ export function getFounderPhoto(): string | null {
   } catch {
     // Some hosts restrict filesystem access at request time. Falling through
     // to the initials card is always safe.
+  }
+
+  // This check happens while the page is built, so a photo added afterwards
+  // will not appear until the next build. Say so loudly in the build log —
+  // otherwise a missing photo looks like a bug in the website.
+  if (!warned) {
+    warned = true;
+    console.warn(
+      `\n[english-pathshala] No founder photo found.\n` +
+        `  Looked in public/ for: ${CANDIDATES.join(', ')}\n` +
+        `  Showing the initials card instead.\n` +
+        `  If you just added the photo, restart 'npm run dev' or re-run 'npm run build' —\n` +
+        `  the page is generated at build time, so a new file is not picked up until then.\n`,
+    );
   }
 
   return null;
